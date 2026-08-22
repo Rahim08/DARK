@@ -25,6 +25,7 @@ export default function Overview() {
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover transition-[transform,filter] duration-[1800ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.04]"
+                style={{ objectPosition: card.objectPosition ?? "center" }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-ink/10" />
 

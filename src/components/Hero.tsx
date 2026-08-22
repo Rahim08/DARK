@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { useRef } from "react";
 import { hero } from "@/lib/content";
+import { useMediaQuery } from "@/lib/hooks";
 import { EASE } from "@/lib/motion";
 import Icon from "@/components/ui/Icon";
 
@@ -31,6 +32,7 @@ function TitleLine({
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -61,6 +63,11 @@ export default function Hero() {
             fetchPriority="high"
             sizes="100vw"
             className="object-cover"
+            style={{
+              objectPosition: isMobile
+                ? hero.objectPositionMobile ?? "center 30%"
+                : hero.objectPosition ?? "55% 40%",
+            }}
           />
         </div>
       </motion.div>

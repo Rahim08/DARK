@@ -17,10 +17,11 @@ function LocationCard({
       <div className="relative aspect-[3/4] overflow-hidden">
         <Image
           src={item.image}
-          alt={item.name}
+          alt={item.alt ?? item.name}
           fill
           sizes="320px"
           className="object-cover transition-[transform,filter] duration-[1400ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.06]"
+          style={{ objectPosition: item.objectPosition ?? "center" }}
         />
         <span className="absolute left-4 top-4 bg-ivory px-2 py-1 font-display text-[0.5625rem] font-bold tracking-[0.24em] text-ink">
           {item.no}

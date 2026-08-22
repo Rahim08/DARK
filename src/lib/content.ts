@@ -45,6 +45,9 @@ export const hero = {
   pagination: "01 / 06",
   bottomRight: "DAHA ÇOX MÜMKÜNLÜK",
   image: "/images/hero-main.jpg",
+  /** focal point — desktop shows full scene, mobile crops to person */
+  objectPosition: "55% 40%",
+  objectPositionMobile: "50% 30%",
 };
 
 export const overview = {
@@ -56,14 +59,16 @@ export const overview = {
       link: "Studiyalarımızı kəşf et",
       image: "/images/overview-studio.jpg",
       alt: "DARK Studio məkanı",
+      objectPosition: "center 45%",
     },
     {
       no: "02",
       label: "DARK PRO",
       title: ["BİZNES ÜÇÜN", "KONTENT SİSTEMİ"],
       link: "Production ilə tanış ol",
-      image: "/images/overview-pro.jpg",
+      image: "/images/overview-pro.jpeg",
       alt: "DARK Pro çəkiliş komandası",
+      objectPosition: "center 40%",
     },
   ],
   advantages: [
@@ -86,30 +91,40 @@ export const locations = {
       name: "CYCLORAMA",
       tags: "Moda · Reklam · Video",
       image: "/images/loc-cyclorama.jpg",
+      objectPosition: "55% 50%",
+      alt: "DARK Studio cycolorama — Profoto lights, director's chair",
     },
     {
       no: "02",
       name: "PODCAST ROOM",
       tags: "Podkast · Müsahibə · YouTube",
       image: "/images/loc-podcast.jpg",
+      objectPosition: "center 55%",
+      alt: "DARK Studio podcast room — microphones, wooden table",
     },
     {
       no: "03",
       name: "KITCHEN",
       tags: "Qida · Reels · Sosial media",
       image: "/images/loc-kitchen.jpg",
+      objectPosition: "center 55%",
+      alt: "DARK Studio kitchen — illuminated shelves, food prep island",
     },
     {
       no: "04",
       name: "LIVING ROOM",
       tags: "Lifestyle · Ailə · Brend",
       image: "/images/loc-living.jpg",
+      objectPosition: "55% 45%",
+      alt: "DARK Studio living room — sofa, curtains, warm light",
     },
     {
       no: "05",
       name: "BLACK BOX",
       tags: "Sonsuz yaradıcılıq",
       image: "/images/loc-blackbox.jpg",
+      objectPosition: "50% 45%",
+      alt: "DARK Studio Black Box — LED light cube, dark room",
     },
   ],
 };
