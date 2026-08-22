@@ -28,20 +28,20 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "KADR — Kreativ Prodakşn Evi | Bakı, Azərbaycan",
+  title: "DARK — Creative Production House | Bakı, Azərbaycan",
   description:
-    "KADR — məkan, komanda, avadanlıq və kontent. Studiya, prodakşn, media və gear — hamısı bir ekosistemdə. Bakı, Azərbaycan.",
+    "DARK — məkan, komanda, avadanlıq və kontent. Studio, Production, Media və Gear — hamısı bir ekosistemdə. Bakı, Azərbaycan.",
   openGraph: {
-    title: "KADR — Kreativ Prodakşn Evi",
+    title: "DARK — Creative Production House",
     description:
-      "Məkan, komanda, avadanlıq və kontent — hamısı bir KADR ekosistemində.",
+      "Məkan, komanda, avadanlıq və kontent — hamısı bir DARK ekosistemində.",
     type: "website",
     locale: "az_AZ",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#131210",
+  themeColor: "#080808",
   colorScheme: "dark",
 };
 

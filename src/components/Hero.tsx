@@ -3,10 +3,8 @@
 import Image from "next/image";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { useRef } from "react";
-import { hero, brand } from "@/lib/content";
-import { useScrollSpy } from "@/lib/hooks";
+import { hero } from "@/lib/content";
 import { EASE } from "@/lib/motion";
-import { Magnetic, Btn } from "@/components/ui/Button";
 import Icon from "@/components/ui/Icon";
 
 /** One headline line, masked, revealed on load. */
@@ -33,7 +31,6 @@ function TitleLine({
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
-  const active = useScrollSpy(hero.sideRail.map((s) => s.href.slice(1)));
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -58,7 +55,7 @@ export default function Hero() {
         <div className="hero-push absolute inset-0">
           <Image
             src={hero.image}
-            alt="KADR studiya səhnəsi"
+            alt="DARK studiya səhnəsi"
             fill
             priority
             fetchPriority="high"
@@ -68,12 +65,12 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Cinematic grade */}
-      <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/55 to-ink/25" />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/70" />
-      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_10%,transparent_40%,rgba(19,18,16,0.55)_100%)]" />
+      {/* Cinematic grade overlays */}
+      <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/50 to-ink/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/65" />
+      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_10%,transparent_40%,rgba(8,8,8,0.5)_100%)]" />
 
-      {/* Right-edge page progress */}
+      {/* Right-edge page progress line */}
       <motion.div
         className="absolute right-0 top-0 z-20 hidden h-full w-px bg-line-d md:block"
         style={{ scaleY: pageProgress, originY: 0 }}
@@ -85,10 +82,10 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Content */}
+      {/* Main content — left side */}
       <motion.div
         style={{ y: fgY, opacity: fadeOut }}
-        className="container-x relative z-10 flex h-full flex-col justify-end pb-14 pt-32 md:pb-16"
+        className="container-x relative z-10 flex h-full flex-col justify-end pb-16 pt-32 md:pb-20"
       >
         {/* Kicker */}
         <motion.p
@@ -102,16 +99,11 @@ export default function Hero() {
           {hero.kicker[1]}
         </motion.p>
 
-        {/* Headline */}
-        <h1 className="display-xl mt-6 text-ivory">
+        {/* Headline — massive */}
+        <h1 className="display-xl mt-5 text-ivory">
           <TitleLine delay={0.65}>{hero.title[0]}</TitleLine>
           <TitleLine delay={0.78}>{hero.title[1]}</TitleLine>
-          <TitleLine delay={0.91}>
-            {hero.title[2]}{" "}
-            <span className="font-serif font-medium italic tracking-normal text-sand">
-              {brand.name}
-            </span>
-          </TitleLine>
+          <TitleLine delay={0.91}>{hero.title[2]}</TitleLine>
         </h1>
 
         {/* Supporting text */}
@@ -131,31 +123,29 @@ export default function Hero() {
           transition={{ duration: 0.9, ease: EASE, delay: 1.45 }}
           className="mt-9 flex flex-wrap items-center gap-4"
         >
-          <Magnetic>
-            <Btn href="#elaqe" variant="solid">
-              {hero.ctaPrimary}
-            </Btn>
-          </Magnetic>
-          <Magnetic>
-            <Btn href="#elaqe" variant="outline">
-              {hero.ctaSecondary}
-            </Btn>
-          </Magnetic>
+          <a href="#elaqe" className="btn btn-solid">
+            <span>{hero.ctaPrimary}</span>
+            <Icon name="arrow-right" size={16} className="btn-arrow" />
+          </a>
+          <a href="#elaqe" className="btn btn-outline">
+            <span>{hero.ctaSecondary}</span>
+            <Icon name="arrow-right" size={16} className="btn-arrow" />
+          </a>
         </motion.div>
 
-        {/* Showreel */}
+        {/* Showreel play — bottom left */}
         <motion.a
           href="#media"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.7 }}
-          className="group mt-10 inline-flex items-center gap-4"
+          className="group mt-12 inline-flex items-center gap-4"
           data-cursor
         >
-          <span className="flex h-12 w-12 items-center justify-center rounded-full border border-ivory/40 transition-all duration-500 group-hover:border-ivory group-hover:bg-ivory group-hover:text-ink">
+          <span className="flex h-12 w-12 items-center justify-center rounded-full border border-ivory/35 transition-all duration-500 group-hover:border-ivory group-hover:bg-ivory group-hover:text-ink">
             <Icon
               name="play"
-              size={15}
+              size={14}
               className="translate-x-[1px] transition-transform duration-500 group-hover:scale-110"
             />
           </span>
@@ -165,46 +155,55 @@ export default function Hero() {
         </motion.a>
       </motion.div>
 
-      {/* Right side rail — the four directions */}
+      {/* Right side rail — section labels + editorial elements */}
       <motion.aside
         initial={{ opacity: 0, x: 24 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: EASE, delay: 1.5 }}
         style={{ opacity: fadeOut }}
-        className="absolute right-12 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-end gap-6 xl:flex"
+        className="absolute right-8 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-end gap-5 xl:right-12"
         aria-label="Bölmələr"
       >
-        <span className="font-display text-[0.625rem] font-bold tracking-[0.3em] text-mut-d">
-          01 / 06
-        </span>
-        {hero.sideRail.map((s, i) => {
-          const isActive = active === s.href.slice(1);
-          return (
+        {/* Section nav labels */}
+        <div className="flex flex-col items-end gap-4">
+          {hero.sideRail.map((s) => (
             <a
               key={s.href}
               href={s.href}
-              className={`group flex items-center gap-3 transition-opacity duration-500 ${
-                isActive ? "opacity-100" : "opacity-55 hover:opacity-100"
-              }`}
+              className="font-display text-[0.5625rem] font-bold tracking-[0.24em] text-faint-d transition-colors duration-500 hover:text-ivory"
             >
-              <span className="font-display text-[0.5625rem] font-bold tracking-[0.2em] text-mut-d">
-                0{i + 1}
-              </span>
-              <span
-                className={`font-display text-[0.6875rem] font-bold tracking-[0.3em] transition-colors duration-500 ${
-                  isActive ? "text-ivory" : "text-mut-d group-hover:text-ivory"
-                }`}
-              >
-                {s.label.toUpperCase()}
-              </span>
-              <span
-                className={`h-px bg-ivory transition-all duration-500 ${
-                  isActive ? "w-8" : "w-0 group-hover:w-8"
-                }`}
-              />
+              {s.label.toUpperCase()}
             </a>
-          );
-        })}
+          ))}
+        </div>
+
+        {/* Vertical separator */}
+        <span className="my-3 h-px w-8 bg-line-d" />
+
+        {/* Stacked quote */}
+        <div className="text-right">
+          {hero.quote.split("\n").map((w, i) => (
+            <motion.p
+              key={i}
+              initial={{ opacity: 0, x: 12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 1.8 + i * 0.08, ease: EASE }}
+              className="font-display text-[0.625rem] font-bold tracking-[0.3em] leading-[1.8] text-faint-d"
+            >
+              {w}
+            </motion.p>
+          ))}
+        </div>
+
+        {/* Pagination */}
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 2.2 }}
+          className="mt-4 font-display text-[0.625rem] font-bold tracking-[0.2em] text-faint-d"
+        >
+          {hero.pagination}
+        </motion.span>
       </motion.aside>
 
       {/* Bottom-right tagline */}
@@ -212,7 +211,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 2 }}
-        className="absolute bottom-9 right-8 z-10 hidden font-display text-[0.5625rem] font-bold tracking-[0.34em] text-mut-d md:block xl:right-12"
+        className="absolute bottom-9 right-8 z-10 hidden font-display text-[0.5625rem] font-bold tracking-[0.34em] text-faint-d md:block xl:right-12"
       >
         {hero.bottomRight}
       </motion.p>

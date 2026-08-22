@@ -4,8 +4,7 @@ import Overview from "@/components/Overview";
 import Locations from "@/components/Locations";
 import WorkModel from "@/components/WorkModel";
 import Production from "@/components/Production";
-import Media from "@/components/Media";
-import Gear from "@/components/Gear";
+import MediaGear from "@/components/MediaGear";
 import FinalCta from "@/components/FinalCta";
 import Footer from "@/components/Footer";
 
@@ -18,8 +17,7 @@ export default function Home() {
       <Locations />
       <WorkModel />
       <Production />
-      <Media />
-      <Gear />
+      <MediaGear />
       <FinalCta />
       <Footer />
     </main>

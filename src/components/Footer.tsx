@@ -14,7 +14,7 @@ const socialIcons: Record<string, IconName> = {
 export default function Footer() {
   return (
     <footer id="haqqimizda" className="scroll-mt-20 bg-ivory text-ink">
-      <div className="container-x pt-20 md:pt-28">
+      <div className="container-x pt-16 md:pt-24">
         {/* Big wordmark */}
         <Rise>
           <div className="flex items-end justify-between gap-6">

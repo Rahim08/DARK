@@ -1,28 +1,28 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/*  KADR — design tokens                                               */
+/*  DARK — design tokens                                               */
 /* ------------------------------------------------------------------ */
 @theme {
-  /* Warm architectural palette */
-  --color-ink: #131210;
-  --color-ink-2: #1b1a15;
-  --color-ink-3: #24221a;
-  --color-ivory: #f4f1ea;
-  --color-ivory-2: #ece8dd;
-  --color-ivory-3: #e3dccb;
+  /* Core palette — warm near-black + warm ivory */
+  --color-ink: #080808;
+  --color-ink-2: #0f0f0f;
+  --color-ink-3: #161614;
+  --color-ivory: #f0ede7;
+  --color-ivory-2: #e8e4db;
+  --color-ivory-3: #ddd8cc;
   --color-sand: #b6ac94;
   --color-clay: #8d7f66;
 
   /* Hairlines */
-  --color-line-d: rgba(244, 241, 234, 0.16);
-  --color-line-l: rgba(19, 18, 16, 0.16);
+  --color-line-d: rgba(240, 237, 231, 0.14);
+  --color-line-l: rgba(8, 8, 8, 0.14);
 
   /* Muted text */
-  --color-mut-d: rgba(244, 241, 234, 0.62);
-  --color-mut-l: rgba(19, 18, 16, 0.62);
-  --color-faint-d: rgba(244, 241, 234, 0.38);
-  --color-faint-l: rgba(19, 18, 16, 0.42);
+  --color-mut-d: rgba(240, 237, 231, 0.58);
+  --color-mut-l: rgba(8, 8, 8, 0.58);
+  --color-faint-d: rgba(240, 237, 231, 0.32);
+  --color-faint-l: rgba(8, 8, 8, 0.32);
 
   /* Type families */
   --font-display: var(--font-archivo);
@@ -42,13 +42,13 @@
   --ease-spring: cubic-bezier(0.34, 1.3, 0.5, 1);
 }
 
-/* Fluid display scale — kept in plain :root because Tailwind's @theme
+/* Fluid display scale — plain :root because Tailwind v4's @theme
    parser drops clamp()-based custom properties. */
 :root {
-  --text-display: clamp(3.4rem, 11.5vw, 9.5rem);
-  --text-display-lg: clamp(2.6rem, 6.6vw, 6rem);
-  --text-display-md: clamp(2rem, 4.4vw, 3.75rem);
-  --text-display-sm: clamp(1.5rem, 2.7vw, 2.4rem);
+  --text-display: clamp(3.6rem, 12vw, 10rem);
+  --text-display-lg: clamp(2.4rem, 7vw, 6.5rem);
+  --text-display-md: clamp(1.8rem, 4.5vw, 3.75rem);
+  --text-display-sm: clamp(1.4rem, 2.8vw, 2.2rem);
   --text-2xl: clamp(1.375rem, 2.2vw, 1.875rem);
   --text-xl: 1.25rem;
 }
@@ -103,7 +103,7 @@
     background: var(--color-ink);
   }
   ::-webkit-scrollbar-thumb {
-    background: #3a382e;
+    background: #2a2820;
     border: 3px solid var(--color-ink);
     border-radius: 8px;
   }
@@ -129,12 +129,12 @@
   .container-x {
     margin-inline: auto;
     width: 100%;
-    max-width: 1720px;
-    padding-inline: clamp(1.25rem, 4.5vw, 4.5rem);
+    max-width: 1440px;
+    padding-inline: clamp(1.25rem, 4vw, 4rem);
   }
 
   .section-pad {
-    padding-block: clamp(4.5rem, 9vw, 8.5rem);
+    padding-block: clamp(4rem, 8vw, 7.5rem);
   }
 
   /* Editorial eyebrow label */
@@ -198,11 +198,11 @@
   /* Outlined display type */
   .text-outline-d {
     color: transparent;
-    -webkit-text-stroke: 1px rgba(244, 241, 234, 0.34);
+    -webkit-text-stroke: 1px rgba(240, 237, 231, 0.28);
   }
   .text-outline-l {
     color: transparent;
-    -webkit-text-stroke: 1px rgba(19, 18, 16, 0.3);
+    -webkit-text-stroke: 1px rgba(8, 8, 8, 0.18);
   }
 
   /* Animated underline link */
@@ -244,7 +244,7 @@
     inset: 0;
     z-index: 90;
     pointer-events: none;
-    opacity: 0.05;
+    opacity: 0.04;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 180px 180px;
@@ -285,27 +285,27 @@
     background: var(--color-ivory-2);
   }
   .btn-outline {
-    border: 1px solid rgba(244, 241, 234, 0.4);
+    border: 1px solid rgba(240, 237, 231, 0.35);
     color: var(--color-ivory);
     background: transparent;
   }
   .btn-outline:hover {
-    background: rgba(244, 241, 234, 0.07);
-    border-color: rgba(244, 241, 234, 0.75);
+    background: rgba(240, 237, 231, 0.07);
+    border-color: rgba(240, 237, 231, 0.7);
   }
   .btn-ink {
     background: var(--color-ink);
     color: var(--color-ivory);
   }
   .btn-ink:hover {
-    background: #26241d;
+    background: #1a1a18;
   }
   .btn-outline-ink {
-    border: 1px solid rgba(19, 18, 16, 0.4);
+    border: 1px solid rgba(8, 8, 8, 0.35);
     color: var(--color-ink);
   }
   .btn-outline-ink:hover {
-    background: rgba(19, 18, 16, 0.05);
+    background: rgba(8, 8, 8, 0.05);
   }
   .btn-sm {
     padding: 0.72rem 1.5rem;
@@ -322,14 +322,14 @@
 
   /* Cinematic hero push-in */
   .hero-push {
-    animation: hero-push 3.8s var(--ease-expo) both;
+    animation: hero-push 4.5s var(--ease-expo) both;
   }
   @keyframes hero-push {
     from {
-      transform: scale(1.2);
+      transform: scale(1.15);
     }
     to {
-      transform: scale(1.06);
+      transform: scale(1.04);
     }
   }
 }
@@ -338,34 +338,6 @@
 /*  Reduced-motion gating for scroll-jacked layouts                     */
 /* ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
-  .curtain-scene {
-    height: auto !important;
-  }
-  .curtain-sticky {
-    position: static !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-  .curtain-panel {
-    position: static !important;
-    transform: none !important;
-    height: auto !important;
-  }
-  .curtain-backdrop {
-    display: none !important;
-  }
-  .hscroll-scene {
-    height: auto !important;
-  }
-  .hscroll-sticky {
-    position: static !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-  .hscroll-track {
-    transform: none !important;
-    flex-wrap: wrap;
-  }
   .cursor-dot,
   .cursor-ring {
     display: none !important;

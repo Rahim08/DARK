@@ -22,7 +22,7 @@ export default function FinalCta() {
       <motion.div style={{ y }} className="absolute inset-0 will-change-transform">
         <Image
           src={finalCta.image}
-          alt="KADR — final çağırış fonu"
+          alt="DARK — final çağırış fonu"
           fill
           sizes="100vw"
           className="object-cover"

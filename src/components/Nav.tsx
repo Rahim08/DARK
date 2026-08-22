@@ -5,20 +5,20 @@ import { AnimatePresence, motion } from "motion/react";
 import { nav as navContent, brand } from "@/lib/content";
 import { useScrolled, useScrollSpy } from "@/lib/hooks";
 import { EASE } from "@/lib/motion";
-import { Magnetic, Btn } from "@/components/ui/Button";
+import Icon from "@/components/ui/Icon";
 
 const SPY_IDS = ["studio", "production", "media", "gear", "islerimiz", "haqqimizda"];
 
 function Logo() {
   return (
-    <a href="#top" className="group flex items-center gap-3" aria-label="KADR — baş səhifə">
-      <span className="font-display text-[1.45rem] font-black tracking-tight leading-none">
-        KADR
+    <a href="#top" className="group flex items-center gap-3" aria-label="DARK — baş səhifə">
+      <span className="font-display text-[1.5rem] font-black tracking-tight leading-none">
+        {brand.name}
       </span>
-      <span className="hidden flex-col text-[0.4375rem] font-semibold leading-[1.35] tracking-[0.28em] text-mut-d sm:flex">
-        <span>YARADICILIQ</span>
-        <span>İNSANLARI YAXIN</span>
-        <span>EDİR</span>
+      <span className="hidden flex-col text-[0.4rem] font-semibold leading-[1.4] tracking-[0.28em] text-faint-d sm:flex">
+        {brand.descriptor.map((w) => (
+          <span key={w}>{w}</span>
+        ))}
       </span>
     </a>
   );
@@ -38,7 +38,7 @@ function LocaleSwitcher({ light }: { light?: boolean }) {
   };
 
   return (
-    <div className="relative flex items-center gap-1.5">
+    <div className="relative flex items-center gap-2">
       {navContent.locales.map((l) => (
         <button
           key={l}
@@ -51,7 +51,7 @@ function LocaleSwitcher({ light }: { light?: boolean }) {
                 : "text-ivory"
               : light
                 ? "text-mut-l hover:text-ink"
-                : "text-mut-d hover:text-ivory"
+                : "text-faint-d hover:text-ivory"
           }`}
         >
           {l}
@@ -79,7 +79,6 @@ export default function Nav() {
   const active = useScrollSpy(SPY_IDS);
   const [open, setOpen] = useState(false);
 
-  // lock body scroll while the menu is open
   useEffect(() => {
     if (open) {
       const prev = document.body.style.overflow;
@@ -100,15 +99,15 @@ export default function Nav() {
         transition={{ duration: 1, ease: EASE, delay: 1.1 }}
         className={`fixed inset-x-0 top-0 z-[100] transition-[background-color,border-color,backdrop-filter] duration-500 ${
           scrolled || open
-            ? "border-b border-line-d bg-ink/85 backdrop-blur-md"
+            ? "border-b border-line-d bg-ink/88 backdrop-blur-md"
             : "border-b border-transparent bg-transparent"
         }`}
       >
-        <div className="container-x flex h-[76px] items-center justify-between gap-6">
+        <div className="container-x flex h-[72px] items-center justify-between gap-6">
           <Logo />
 
           {/* Center links — lg+ */}
-          <nav aria-label="Əsas naviqasiya" className="hidden items-center gap-7 lg:flex">
+          <nav aria-label="Əsas naviqasiya" className="hidden items-center gap-6 lg:flex">
             {navContent.links.slice(0, 4).map((l) => (
               <a
                 key={l.href}
@@ -125,6 +124,18 @@ export default function Nav() {
                 />
               </a>
             ))}
+            {/* Secondary nav items — slightly muted */}
+            {navContent.links.slice(4).map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className={`font-display text-[0.6875rem] font-bold tracking-[0.14em] transition-colors duration-300 ${
+                  active === l.href.slice(1) ? "text-ivory" : "text-faint-d hover:text-ivory"
+                }`}
+              >
+                {l.label}
+              </a>
+            ))}
           </nav>
 
           {/* Right controls */}
@@ -132,11 +143,15 @@ export default function Nav() {
             <div className="hidden lg:flex">
               <LocaleSwitcher />
             </div>
-            <Magnetic className="hidden md:block">
-              <Btn href="#elaqe" size="sm" variant="outline">
-                {navContent.contact}
-              </Btn>
-            </Magnetic>
+
+            {/* Contact button */}
+            <a
+              href="#elaqe"
+              className="hidden items-center gap-2 rounded-full border border-ivory/30 px-5 py-2 font-display text-[0.6875rem] font-bold tracking-[0.14em] text-ivory transition-all duration-500 hover:border-ivory hover:bg-ivory hover:text-ink md:inline-flex"
+            >
+              {navContent.contact}
+              <Icon name="arrow-right" size={14} className="btn-arrow" />
+            </a>
 
             {/* Hamburger — md and below */}
             <button
@@ -152,7 +167,7 @@ export default function Nav() {
                   }`}
                 />
                 <span
-                  className={`absolute left-0 top-1/2 h-px w-full bg-ivory transition-all duration-300 ${
+                  className={`absolute left-0 top-1/2 h-px w-full bg-ivory transition-duration-300 ${
                     open ? "opacity-0" : ""
                   }`}
                 />
@@ -188,7 +203,7 @@ export default function Nav() {
                   transition={{ duration: 0.7, ease: EASE, delay: 0.15 + i * 0.07 }}
                   className="group flex items-baseline gap-4 py-2"
                 >
-                  <span className="font-display text-[0.625rem] font-bold tracking-[0.2em] text-mut-d">
+                  <span className="font-display text-[0.625rem] font-bold tracking-[0.2em] text-faint-d">
                     0{i + 1}
                   </span>
                   <span className="display-lg text-ivory transition-colors group-hover:text-sand">
@@ -208,11 +223,16 @@ export default function Nav() {
                 <LocaleSwitcher light={false} />
               </div>
               <div>
-                <Btn href="#elaqe" variant="solid" onClick={onClose}>
-                  {navContent.contact}
-                </Btn>
+                <a
+                  href="#elaqe"
+                  onClick={onClose}
+                  className="btn btn-solid"
+                >
+                  <span>{navContent.contact}</span>
+                  <Icon name="arrow-right" size={16} className="btn-arrow" />
+                </a>
               </div>
-              <p className="text-2xs tracking-[0.24em] text-mut-d">
+              <p className="text-2xs tracking-[0.24em] text-faint-d">
                 {brand.city} · {brand.sub}
               </p>
             </motion.div>
